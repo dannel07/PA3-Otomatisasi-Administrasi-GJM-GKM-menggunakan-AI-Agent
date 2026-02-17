@@ -7,12 +7,23 @@
     <title>@yield('title', 'Sistem GJK & GKM')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --primary-color: #1e3c72;
             --secondary-color: #2a5298;
             --sidebar-width: 250px;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
         }
 
         body {
@@ -22,6 +33,7 @@
 
         .wrapper {
             display: flex;
+            width: 100%;
             min-height: 100vh;
         }
 
@@ -111,7 +123,8 @@
 
         .main-content {
             margin-left: var(--sidebar-width);
-            flex: 1;
+            width: calc(100% - var(--sidebar-width));
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
@@ -119,7 +132,7 @@
         .topbar {
             background: white;
             border-bottom: 1px solid #e0e0e0;
-            padding: 20px;
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -153,6 +166,15 @@
         .content {
             flex: 1;
             background-color: #f5f7fa;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Force full width for all content */
+        .content > * {
+            width: 100% !important;
+            max-width: 100% !important;
         }
 
         .card {
@@ -188,6 +210,18 @@
             border: none;
         }
 
+        /* Override Bootstrap container constraints */
+        .container-fluid {
+            max-width: 100% !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .row {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+
         @media (max-width: 768px) {
             :root {
                 --sidebar-width: 0;
@@ -199,6 +233,7 @@
 
             .main-content {
                 margin-left: 0;
+                width: 100%;
             }
         }
     </style>
@@ -291,9 +326,9 @@
                     </div>
                 </div>
 
-                <div class="content p-4">
+                <div class="content">
                     @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
                             <strong>Error!</strong>
                             <ul class="mb-0">
                                 @foreach ($errors->all() as $error)
@@ -305,7 +340,7 @@
                     @endif
 
                     @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
                             {{ session('success') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>

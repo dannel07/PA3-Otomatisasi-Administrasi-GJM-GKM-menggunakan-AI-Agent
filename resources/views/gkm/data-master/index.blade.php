@@ -3,7 +3,7 @@
 @section('page-title', 'Data Master')
 
 @section('content')
-<div class="container-fluid">
+<div style="padding: 1.5rem;">
     <div class="row">
         <div class="col-md-6 col-lg-3 mb-3">
             <div class="card border-0 shadow-sm h-100">
@@ -33,7 +33,7 @@
                     <i class="bi bi-calendar" style="font-size: 40px; color: #6f42c1;"></i>
                     <h6 class="mt-3 mb-2">Data Periode Akademik</h6>
                     <p class="text-muted small mb-3">Kelola periode semester akademik</p>
-                    <a href="#" class="btn btn-secondary btn-sm">Kelola Periode</a>
+                    <a href="{{ route('gkm.data-master.periode') }}" class="btn btn-secondary btn-sm">Kelola Periode</a>
                 </div>
             </div>
         </div>

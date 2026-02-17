@@ -15,11 +15,14 @@ class Dosen extends Model
     protected $fillable = [
         'user_id',
         'prodi_id',
-        'nama_dosen',
-        'email_dosen',
+        'nama_lengkap',
+        'nidn',
         'gelar_akademik',
-        'status_dosen',
-        'tanggal_bergabung',
+        'jabatan_akademik',
+        'kontak_email',
+        'bio',
+        'foto_profil',
+        'status',
     ];
 
     public function user()
@@ -34,7 +37,7 @@ class Dosen extends Model
 
     public function matakuliah()
     {
-        return $this->hasMany(Matakuliah::class);
+        return $this->belongsToMany(Matakuliah::class, 'dosen_matakuliah');
     }
 
     public function rps()

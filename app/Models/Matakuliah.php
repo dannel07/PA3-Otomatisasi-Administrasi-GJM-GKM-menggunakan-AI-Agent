@@ -9,16 +9,19 @@ class Matakuliah extends Model
 {
     use HasFactory;
 
+    // Paksa Laravel pakai tabel "matakuliah"
+    protected $table = 'matakuliah';
+
     protected $fillable = [
         'prodi_id',
-        'dosen_id',
         'kode_mk',
         'nama_mk',
-        'deskripsi_mk',
+        'deskripsi',
+        'capaian_pembelajaran',
         'sks',
         'semester',
-        'tipe_mk',
-        'status_mk',
+        'jenis_mk',
+        'status',
     ];
 
     public function prodi()
@@ -28,7 +31,7 @@ class Matakuliah extends Model
 
     public function dosen()
     {
-        return $this->belongsTo(Dosen::class);
+        return $this->belongsToMany(Dosen::class, 'dosen_matakuliah');
     }
 
     public function rps()

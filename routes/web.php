@@ -38,14 +38,30 @@ Route::middleware('auth')->group(function () {
         Route::prefix('data-master')->name('data-master.')->group(function () {
             Route::get('/', [DataMasterController::class, 'index'])->name('index');
             Route::get('/dosen-pengajar', [DataMasterController::class, 'dosenPengajar'])->name('dosen');
+            Route::post('/dosen-pengajar', [DataMasterController::class, 'storeDosen'])->name('dosen.store');
+            Route::put('/dosen-pengajar/{id}', [DataMasterController::class, 'updateDosen'])->name('dosen.update');
+            Route::delete('/dosen-pengajar/{id}', [DataMasterController::class, 'destroyDosen'])->name('dosen.destroy');
             Route::get('/matakuliah', [DataMasterController::class, 'matakuliah'])->name('matakuliah');
+            Route::post('/matakuliah', [DataMasterController::class, 'storeMatakuliah'])->name('matakuliah.store');
+            Route::put('/matakuliah/{id}', [DataMasterController::class, 'updateMatakuliah'])->name('matakuliah.update');
+            Route::delete('/matakuliah/{id}', [DataMasterController::class, 'destroyMatakuliah'])->name('matakuliah.destroy');
+            Route::get('/periode-akademik', [DataMasterController::class, 'periodeAkademik'])->name('periode');
+            Route::post('/periode-akademik', [DataMasterController::class, 'storePeriode'])->name('periode.store');
+            Route::put('/periode-akademik/{id}', [DataMasterController::class, 'updatePeriode'])->name('periode.update');
+            Route::delete('/periode-akademik/{id}', [DataMasterController::class, 'destroyPeriode'])->name('periode.destroy');
+            Route::post('/periode-akademik/{id}/activate', [DataMasterController::class, 'activatePeriode'])->name('periode.activate');
             Route::get('/template-laporan', [DataMasterController::class, 'templateLaporan'])->name('template');
+            Route::post('/template-laporan', [DataMasterController::class, 'storeTemplate'])->name('template.store');
+            Route::get('/template-laporan/{id}/download', [DataMasterController::class, 'downloadTemplate'])->name('template.download');
+            Route::delete('/template-laporan/{id}', [DataMasterController::class, 'destroyTemplate'])->name('template.destroy');
         });
 
         // Monitoring RPS & Materi
         Route::prefix('monitoring-rps')->name('monitoring-rps.')->group(function () {
             Route::get('/', [MonitoringRPSController::class, 'index'])->name('index');
             Route::get('/ceklist-rps', [MonitoringRPSController::class, 'ceklistRPS'])->name('ceklist');
+            Route::post('/generate-message', [MonitoringRPSController::class, 'generateReminderMessage'])->name('generate-message');
+            Route::post('/send-reminder', [MonitoringRPSController::class, 'sendReminder'])->name('send-reminder');
             Route::get('/history-reminder', [MonitoringRPSController::class, 'historyReminder'])->name('history');
         });
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('kode_mk')->unique();
             $table->string('nama_mk');
             $table->integer('sks')->nullable();
+            $table->integer('semester')->nullable();
             $table->string('jenis_mk')->nullable(); // Teori, Praktik, dll
             $table->text('deskripsi')->nullable();
             $table->text('capaian_pembelajaran')->nullable();

@@ -3,7 +3,7 @@
 @section('page-title', 'Pelaporan')
 
 @section('content')
-<div class="container-fluid">
+<div style="padding: 1.5rem;">
     <div class="row mb-4">
         <div class="col-12">
             <p class="text-muted">Generate Laporan Otomatis Menggunakan AI Agent</p>

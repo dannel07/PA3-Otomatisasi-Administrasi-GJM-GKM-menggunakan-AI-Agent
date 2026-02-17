@@ -3,7 +3,7 @@
 @section('page-title', 'Reminder Agent')
 
 @section('content')
-<div class="container-fluid">
+<div style="padding: 1.5rem;">
     <div class="row">
         <div class="col-md-6 mb-3">
             <div class="card border-0 shadow-sm h-100">

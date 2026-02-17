@@ -13,15 +13,17 @@ class LogEmail extends Model
 
     protected $fillable = [
         'reminder_id',
-        'email_tujuan',
-        'subjek_email',
+        'penerima_email',
+        'subjek',
+        'isi_email',
         'status_pengiriman',
-        'waktu_pengiriman',
-        'keterangan',
+        'pesan_error',
+        'tanggal_pengiriman',
+        'percobaan_kirim',
     ];
 
     protected $casts = [
-        'waktu_pengiriman' => 'datetime',
+        'tanggal_pengiriman' => 'date',
     ];
 
     public function reminder()

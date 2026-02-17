@@ -15,8 +15,8 @@ class Ajaran extends Model
         'tahun_ajaran',
         'semester',
         'tanggal_mulai',
-        'tanggal_selesai',
-        'status_ajaran',
+        'tanggal_akhir',
+        'status',
     ];
 
     public function rps()

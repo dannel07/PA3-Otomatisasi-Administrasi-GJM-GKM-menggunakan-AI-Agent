@@ -10,34 +10,45 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Admin
-        User::create([
-            'name' => 'Admin',
-            'username' => 'admin',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
-            'is_active' => true,
+        // Seed Prodi first
+        $this->call([
+            ProdiSeeder::class,
         ]);
+
+        // Admin
+        User::firstOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Admin',
+                'username' => 'admin',
+                'password' => Hash::make('password'),
+                'role' => 'admin',
+                'is_active' => true,
+            ]
+        );
 
         // GKM Reviewer
-        User::create([
-            'name' => 'GKM Reviewer',
-            'username' => 'gkmreviewer',
-            'email' => 'gkm@example.com',
-            'password' => Hash::make('password'),
-            'role' => 'gkm_reviewer',
-            'is_active' => true,
-        ]);
+        User::firstOrCreate(
+            ['email' => 'gkm@example.com'],
+            [
+                'name' => 'GKM Reviewer',
+                'username' => 'gkmreviewer',
+                'password' => Hash::make('password'),
+                'role' => 'gkm_reviewer',
+                'is_active' => true,
+            ]
+        );
 
         // GJM Reviewer
-        User::create([
-            'name' => 'GJM Reviewer',
-            'username' => 'gjmreviewer',
-            'email' => 'gjm@example.com',
-            'password' => Hash::make('password'),
-            'role' => 'gjm_reviewer',
-            'is_active' => true,
-        ]);
+        User::firstOrCreate(
+            ['email' => 'gjm@example.com'],
+            [
+                'name' => 'GJM Reviewer',
+                'username' => 'gjmreviewer',
+                'password' => Hash::make('password'),
+                'role' => 'gjm_reviewer',
+                'is_active' => true,
+            ]
+        );
     }
 }

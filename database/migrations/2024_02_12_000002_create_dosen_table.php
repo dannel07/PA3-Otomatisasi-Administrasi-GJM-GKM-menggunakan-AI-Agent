@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('nama_lengkap');
-            $table->string('nip')->unique();
+            $table->string('nidn')->unique();
             $table->string('gelar_akademik')->nullable();
             $table->string('jabatan_akademik')->nullable();
             $table->string('kontak_email');
-            $table->string('nomor_hp')->nullable();
             $table->foreignId('prodi_id')->constrained('prodi')->onDelete('cascade');
             $table->text('bio')->nullable();
             $table->string('foto_profil')->nullable();

@@ -3,7 +3,7 @@
 @section('page-title', 'Monitoring RPS & Materi')
 
 @section('content')
-<div class="container-fluid">
+<div style="padding: 1.5rem;">
     <h4 class="mb-4">MONITORING MATERI & RPS</h4>
 
     <p class="text-muted mb-3">Periode: {{ date('F Y') }} - Minggu ke-4</p>
@@ -17,7 +17,7 @@
                         <option value="">Cari dosen atau mata kuliah...</option>
                         @foreach($dosenList as $dos)
                             <option value="{{ $dos->id }}" @if(request('dosen_id') == $dos->id) selected @endif>
-                                {{ $dos->nama_dosen }}
+                                {{ $dos->nama_lengkap }}
                             </option>
                         @endforeach
                     </select>
@@ -52,24 +52,28 @@
                     <tbody>
                         @forelse($dosenList as $i => $dos)
                             <tr>
-                                <td>{{ $i + 1 }}</td>
+                                <td>{{ $dosenList->firstItem() + $i }}</td>
                                 <td>
-                                    <strong>{{ $dos->nama_dosen }}</strong><br>
-                                    <small class="text-muted">{{ $dos->email_dosen }}</small>
+                                    <strong>{{ $dos->nama_lengkap }}</strong><br>
+                                    <small class="text-muted">{{ $dos->kontak_email }}</small>
                                 </td>
                                 <td>
-                                    @if($dos->matakuiah->count() > 0)
-                                        {{ $dos->matakuiah->first()->nama_mk }}
+                                    @if($dos->matakuliah && $dos->matakuliah->count() > 0)
+                                        @foreach($dos->matakuliah->take(2) as $mk)
+                                            <span class="badge bg-secondary">{{ $mk->nama_mk }}</span>
+                                        @endforeach
+                                        @if($dos->matakuliah->count() > 2)
+                                            <span class="badge bg-light text-dark">+{{ $dos->matakuliah->count() - 2 }} lainnya</span>
+                                        @endif
                                     @else
-                                        -
+                                        <span class="text-muted">Belum ada mata kuliah</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <span class="badge bg-success">✓</span>
-                                    <span class="badge bg-danger">✕</span>
+                                    <span class="badge bg-warning">⊙</span>
                                 </td>
                                 <td>
-                                    <span class="badge bg-success">Lengkap</span>
+                                    <span class="badge bg-warning">Belum Upload</span>
                                 </td>
                                 <td>
                                     <a href="{{ route('gkm.monitoring-rps.history', ['dosenId' => $dos->id]) }}" class="btn btn-sm btn-outline-primary">
@@ -86,7 +90,7 @@
                 </table>
             </div>
             <div class="mt-3">
-                <small class="text-muted">Menampilkan Data 1 sampai 5 dari total 18</small>
+                {{ $dosenList->links() }}
             </div>
         </div>
     </div>
